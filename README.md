@@ -1,2 +1,7 @@
 # NeuroCrypt
- NeuroCrypt is a new cryptocurrency.
+
+ NeuroCrypt my own blockchain created with Typescript and NodeJS.
+ 
+ ---
+ 
+ 
