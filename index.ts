@@ -1,12 +1,29 @@
 import * as crypto from 'crypto';
+import express from 'express';
+
+const app = express();
+
+const PORT = 8080 || process.env.PORT;
+
+app.set('view engine', 'ejs');
+
+app.get("/", (req, res) => {
+  res.render("index");
+});
+
+app.listen(PORT, () => {
+  // tslint:disable-next-line:no-console
+  console.log( `server started at http://localhost:${ PORT }` );
+} );
+
 
 // Transfer of funds between two wallets
 class Transaction {
   constructor(
-    public amount: number, 
+    public amount: number,
     public payer: string, // public key
     public payee: string // public key
-  ) {}
+  ) { }
 
   toString() {
     return JSON.stringify(this);
@@ -19,10 +36,10 @@ class Block {
   public nonce = Math.round(Math.random() * 999999999);
 
   constructor(
-    public prevHash: string, 
-    public transaction: Transaction, 
+    public prevHash: string,
+    public transaction: Transaction,
     public ts = Date.now()
-  ) {}
+  ) { }
 
   get hash() {
     const str = JSON.stringify(this);
@@ -57,14 +74,14 @@ class Chain {
     let solution = 1;
     console.log('⛏️  mining...')
 
-    while(true) {
+    while (true) {
 
       const hash = crypto.createHash('MD5');
       hash.update((nonce + solution).toString()).end();
 
       const attempt = hash.digest('hex');
 
-      if(attempt.substr(0,4) === '0000'){
+      if (attempt.substr(0, 4) === '0000') {
         console.log(`Solved: ${solution}`);
         return solution;
       }
@@ -111,7 +128,7 @@ class Wallet {
     const sign = crypto.createSign('SHA256');
     sign.update(transaction.toString()).end();
 
-    const signature = sign.sign(this.privateKey); 
+    const signature = sign.sign(this.privateKey);
     Chain.instance.addBlock(transaction, this.publicKey, signature);
   }
 }
