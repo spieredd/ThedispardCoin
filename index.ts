@@ -1,20 +1,4 @@
 import * as crypto from 'crypto';
-import express from 'express';
-
-const app = express();
-
-const PORT = 8080 || process.env.PORT;
-
-app.set('view engine', 'ejs');
-
-app.get("/", (req, res) => {
-  res.render("index");
-});
-
-app.listen(PORT, () => {
-  // tslint:disable-next-line:no-console
-  console.log( `server started at http://localhost:${ PORT }` );
-} );
 
 
 // Transfer of funds between two wallets

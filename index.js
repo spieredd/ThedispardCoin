@@ -18,22 +18,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const crypto = __importStar(require("crypto"));
-const express_1 = __importDefault(require("express"));
-const app = express_1.default();
-const PORT = 8080 || process.env.PORT;
-app.set('view engine', 'ejs');
-app.get("/", (req, res) => {
-    res.render("index");
-});
-app.listen(PORT, () => {
-    // tslint:disable-next-line:no-console
-    console.log(`server started at http://localhost:${PORT}`);
-});
 // Transfer of funds between two wallets
 class Transaction {
     constructor(amount, payer, // public key
