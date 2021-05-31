@@ -1,4 +1,4 @@
-# Thedispard Coin
+# Thedispard Coin 💲
 
 A Cryptocurrency created in the case of our High-School Project of "Enseignement Scientifique" (Scientific Teaching).
 
